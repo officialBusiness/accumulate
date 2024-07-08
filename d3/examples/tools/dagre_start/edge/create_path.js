@@ -19,11 +19,15 @@ export function initPath( svgSelection ){
 }
 
 export default function createPath(enter){
-	const path =  enter
-		.append("path")
-		.attr("class", "link")
-		.attr("id", (d)=>{ return d.label })
-		.attr("marker-end", "url(#arrowhead)")
+	const
+		edge = enter
+			.append("g")
+			.attr("class", "edge"),
+
+		path = edge.append("path")
+			.attr("class", "link")
+			.attr("id", (d)=>{ return d.label })
+			.attr("marker-end", "url(#arrowhead)");
 
 	return path;
 }
