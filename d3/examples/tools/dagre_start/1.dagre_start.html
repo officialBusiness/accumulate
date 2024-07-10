@@ -79,7 +79,6 @@
 					const nodeData = Object.values( g._nodes );
 					const edgesData = Object.values( g._edgeLabels );
 
-
 					const node = gNodes.selectAll("g")
 						.data( nodeData, (d) => {
 							return d.id;
@@ -96,8 +95,12 @@
 					dagre.layout(g);
 
 					node.attr("transform", function(d) {
-							return "translate(" + d.x + "," + d.y +")";
-						});
+						return "translate(" +
+							(d.x - d.width / 2) +
+							"," +
+							(d.y - d.height / 2) +
+							")";
+					});
 
 					edge.attr("d", function(d) {
 						return (

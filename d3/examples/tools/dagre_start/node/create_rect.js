@@ -50,25 +50,29 @@ export default function createRect(enter, nodeEvents){
 			if( d.isParent ){
 				return 0;
 			}
-			return -(d.bbox.width + nodePadding[1] + nodePadding[3]) / 2;
+			return 0;
 		})
 		.attr("y", function(d) {
 			if( d.isParent ){
 				return 0;
 			}
-			return -(d.bbox.height + nodePadding[0] + nodePadding[2]) / 2;
+			return 0;
 		})
 
 	labels
-		.attr("x", function(d) {
-			return -d.bbox.width / 2;
-		})
 		.attr("y", function(d) {
 			if( d.isParent ){
 				return 0;
 			}
-			return -d.bbox.height / 2;
-		});
+			return nodePadding[0];
+		})
+		.selectAll('tspan')
+			.attr("x", function(d) {
+				if( d.isParent ){
+					return 0;
+				}
+				return d.bbox.width / 2 + nodePadding[1];
+			});
 
 	return node;
 }

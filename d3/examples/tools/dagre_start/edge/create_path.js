@@ -1,21 +1,19 @@
 
 export function initPath( svgSelection ){
 
-	const defs = svgSelection.append("defs");
-
-	const marker = defs.append("marker")
-			.attr("id", "arrowhead")
-			.attr("viewBox", "0 0 10 10")
-			.attr("refX", "8")
-			.attr("refY", "5")
-			.attr("markerUnits", "strokeWidth")
-			.attr("markerWidth", "8")
-			.attr("markerHeight", "5")
-			.attr("orient", "auto")
-			.attr("style", "fill: #333");
-
-	marker.append("path")
-			.attr("d", "M 0 0 L 10 5 L 0 10 z");
+	svgSelection.append("defs")
+			.append("marker")
+				.attr("id", "arrowhead")
+				.attr("viewBox", "0 0 10 10")
+				.attr("refX", "8")
+				.attr("refY", "5")
+				.attr("markerUnits", "strokeWidth")
+				.attr("markerWidth", "8")
+				.attr("markerHeight", "5")
+				.attr("orient", "auto")
+				.attr("style", "fill: #333")
+			.append("path")
+				.attr("d", "M 0 0 L 10 5 L 0 10 z");
 }
 
 export default function createPath(enter){

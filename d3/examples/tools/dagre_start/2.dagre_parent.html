@@ -19,7 +19,9 @@
 			import createRect from './node/create_rect.js';
 			import createPath, { initPath } from './edge/create_path.js';
 
-			const g = new dagre.graphlib.Graph({compound:true})
+			const g = new dagre.graphlib.Graph({
+					compound:true
+				})
 				.setGraph({})
 				.setDefaultEdgeLabel(function() { return {}; });
 
@@ -93,7 +95,6 @@
 					const nodeData = Object.values( g._nodes );
 					const edgesData = Object.values( g._edgeLabels );
 
-
 					const node = gNodes.selectAll("g")
 						.data( nodeData, (d) => {
 							return d.id;
@@ -111,18 +112,14 @@
 
 					node
 						.attr("transform", function(d) {
-							let x, y;
-							if( d.isParent ){
 
-								x = d.x - d.width / 2;
-								y = d.y - d.height / 2;
-							}else{
-								x = d.x;
-								y = d.y;
-							}
-							return "translate(" + x + "," + y +")";
+							return "translate(" +
+								(d.x - d.width / 2) +
+								"," +
+								(d.y - d.height / 2) +
+								")";
 						})
-							.select('rect')
+						.select('rect')
 							.attr('width', function(d){
 								return d.width;
 							})
