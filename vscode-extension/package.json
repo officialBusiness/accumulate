@@ -1,8 +1,14 @@
 {
 	"name": "vscode-extension",
-	"displayName": "vscode_extension",
-	"description": "vscode_extension",
+	"displayName": "vscode extension",
+	"description": "王鑫波的 vscode 插件",
 	"version": "0.0.1",
+	"publisher": "wangxinbo",
+	"icon": "icon.jpeg",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/officialBusiness/accumulate.git"
+	},
 	"engines": {
 		"vscode": "^1.91.0"
 	},
@@ -10,7 +16,7 @@
 		"Other"
 	],
 	"activationEvents": [],
-	"main": "./extension.js",
+	"main": "./src/extension.js",
 	"contributes": {
 		"commands": [
 			{
