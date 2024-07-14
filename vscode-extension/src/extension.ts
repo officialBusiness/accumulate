@@ -1,10 +1,9 @@
 
-const vscode = require('vscode');
+import vscode from 'vscode';
 
-let myStatusBarItem;
-let myStatusBarItemIsShow = false;
+import StatusBarItem from './status_bar_item/status_bar_item';
 
-function activate(context) {
+export function activate(context: vscode.ExtensionContext) {
 
 	console.log('Congratulations, your extension "vscode-extension" is now active!');
 
@@ -26,34 +25,11 @@ function activate(context) {
 		vscode.window.showInformationMessage('选中的文字: ' + text + '; 选中的文字长度: ' + text.length);
 	}) );
 
+	StatusBarItem.init( context );
 
-	myStatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.LEFT);
-	myStatusBarItem.command = 'vscode-extension.helloWorld';
-	context.subscriptions.push(myStatusBarItem);
-
-	context.subscriptions.push( vscode.commands.registerCommand( 'vscode-extension.statusBarAlignment', ()=>{
-
-		let editor = vscode.window.activeTextEditor;
-
-		myStatusBarItem.text = "第一个 statusBarAlignment";
-		if( myStatusBarItemIsShow ){
-
-			myStatusBarItem.hide();
-			myStatusBarItemIsShow = false;
-		}else{
-
-			myStatusBarItem.show();
-			myStatusBarItemIsShow = true;
-		}
-	}) );
+	context.subscriptions.push( vscode.commands.registerCommand( 'vscode-extension.statusBarAlignment', StatusBarItem.commandHandler ) );
 }
 
 
+export function deactivate(){}
 
-
-function deactivate(){}
-
-module.exports = {
-	activate,
-	deactivate
-}
