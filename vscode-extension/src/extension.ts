@@ -2,6 +2,8 @@
 import vscode from 'vscode';
 
 import StatusBarItem from './status_bar_item/status_bar_item';
+import WebviewPanel from './webview_panel/webview_panel';
+
 
 export function activate(context: vscode.ExtensionContext) {
 
@@ -10,6 +12,7 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push( vscode.commands.registerCommand('vscode-extension.helloWorld', () => {
 		vscode.window.showInformationMessage('Hello World from vscode_extension!');
 	}) );
+
 
 	context.subscriptions.push( vscode.commands.registerCommand('vscode-extension.consoleText', () => {
 
@@ -25,9 +28,12 @@ export function activate(context: vscode.ExtensionContext) {
 		vscode.window.showInformationMessage('选中的文字: ' + text + '; 选中的文字长度: ' + text.length);
 	}) );
 
-	StatusBarItem.init( context );
 
+	StatusBarItem.init( context );
 	context.subscriptions.push( vscode.commands.registerCommand( 'vscode-extension.statusBarAlignment', StatusBarItem.commandHandler ) );
+
+	WebviewPanel.init();
+	context.subscriptions.push( vscode.commands.registerCommand( 'vscode-extension.webviewPanel',  WebviewPanel.commandHandler ) );
 }
 
 

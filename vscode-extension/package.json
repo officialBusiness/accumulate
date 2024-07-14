@@ -30,6 +30,10 @@
 			{
 				"command": "vscode-extension.statusBarAlignment",
 				"title": "练习: 第一个 statusBarAlignment"
+			},
+			{
+				"command": "vscode-extension.webviewPanel",
+				"title": "练习: 第一个 webview panel"
 			}
 		]
 	},

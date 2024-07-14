@@ -7,6 +7,7 @@ exports.activate = activate;
 exports.deactivate = deactivate;
 const vscode_1 = __importDefault(require("vscode"));
 const status_bar_item_1 = __importDefault(require("./status_bar_item/status_bar_item"));
+const webview_panel_1 = __importDefault(require("./webview_panel/webview_panel"));
 function activate(context) {
     console.log('Congratulations, your extension "vscode-extension" is now active!');
     context.subscriptions.push(vscode_1.default.commands.registerCommand('vscode-extension.helloWorld', () => {
@@ -25,6 +26,8 @@ function activate(context) {
     }));
     status_bar_item_1.default.init(context);
     context.subscriptions.push(vscode_1.default.commands.registerCommand('vscode-extension.statusBarAlignment', status_bar_item_1.default.commandHandler));
+    webview_panel_1.default.init();
+    context.subscriptions.push(vscode_1.default.commands.registerCommand('vscode-extension.webviewPanel', webview_panel_1.default.commandHandler));
 }
 function deactivate() { }
 //# sourceMappingURL=extension.js.map
