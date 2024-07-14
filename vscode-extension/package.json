@@ -21,7 +21,15 @@
 		"commands": [
 			{
 				"command": "vscode-extension.helloWorld",
-				"title": "Hello World"
+				"title": "练习: 第一个 hello World 命令"
+			},
+			{
+				"command": "vscode-extension.consoleText",
+				"title": "练习: 用于打印选中文字"
+			},
+			{
+				"command": "vscode-extension.statusBarAlignment",
+				"title": "练习: 第一个 statusBarAlignment"
 			}
 		]
 	},

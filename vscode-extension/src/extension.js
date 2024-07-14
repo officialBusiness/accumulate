@@ -1,17 +1,55 @@
 
 const vscode = require('vscode');
 
+let myStatusBarItem;
+let myStatusBarItemIsShow = false;
+
 function activate(context) {
 
 	console.log('Congratulations, your extension "vscode-extension" is now active!');
 
-	const disposable = vscode.commands.registerCommand('vscode-extension.helloWorld', () => {
-
+	context.subscriptions.push( vscode.commands.registerCommand('vscode-extension.helloWorld', () => {
 		vscode.window.showInformationMessage('Hello World from vscode_extension!');
-	});
+	}) );
 
-	context.subscriptions.push(disposable);
+	context.subscriptions.push( vscode.commands.registerCommand('vscode-extension.consoleText', () => {
+
+		let editor = vscode.window.activeTextEditor;
+		if (!editor) {
+
+			vscode.window.showInformationMessage('没有打开的编辑器');
+			return; // 没有打开的编辑器
+		}
+		let selection = editor.selection;
+		let text = editor.document.getText(selection);
+		// 给用户一个消息提示框
+		vscode.window.showInformationMessage('选中的文字: ' + text + '; 选中的文字长度: ' + text.length);
+	}) );
+
+
+	myStatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.LEFT);
+	myStatusBarItem.command = 'vscode-extension.helloWorld';
+	context.subscriptions.push(myStatusBarItem);
+
+	context.subscriptions.push( vscode.commands.registerCommand( 'vscode-extension.statusBarAlignment', ()=>{
+
+		let editor = vscode.window.activeTextEditor;
+
+		myStatusBarItem.text = "第一个 statusBarAlignment";
+		if( myStatusBarItemIsShow ){
+
+			myStatusBarItem.hide();
+			myStatusBarItemIsShow = false;
+		}else{
+
+			myStatusBarItem.show();
+			myStatusBarItemIsShow = true;
+		}
+	}) );
 }
+
+
+
 
 function deactivate(){}
 
